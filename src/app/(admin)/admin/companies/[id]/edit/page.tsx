@@ -25,9 +25,9 @@ interface Company {
 }
 
 interface EditCompanyPageProps {
-	params: {
+	params: Promise<{
 		id: string
-	}
+	}>
 }
 
 export default function EditCompanyPage({ params }: EditCompanyPageProps) {
@@ -37,7 +37,8 @@ export default function EditCompanyPage({ params }: EditCompanyPageProps) {
 	useEffect(() => {
 		const fetchCompany = async () => {
 			try {
-				const response = await fetch(`/api/admin/companies/${params.id}`)
+				const { id } = await params
+				const response = await fetch(`/api/admin/companies/${id}`)
 				if (response.ok) {
 					const data = await response.json()
 					setCompany(data)
@@ -56,7 +57,7 @@ export default function EditCompanyPage({ params }: EditCompanyPageProps) {
 		}
 
 		fetchCompany()
-	}, [params.id])
+	}, [params])
 
 	if (loading) {
 		return (

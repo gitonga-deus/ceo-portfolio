@@ -13,14 +13,14 @@ import { generateMetadata as generateSEOMetadata, generateArticleStructuredData 
 import { StructuredData } from "@/components/seo/structured-data"
 
 interface BlogPostPageProps {
-	params: {
+	params: Promise<{
 		slug: string
-	}
+	}>
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-	const awaitedParams = await params
-	const post = await getBlogPostBySlug(awaitedParams.slug)
+	const { slug } = await params
+	const post = await getBlogPostBySlug(slug)
 
 	if (!post) {
 		return generateSEOMetadata({
@@ -44,8 +44,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-	const awaitedParams = await params
-	const post = await getBlogPostBySlug(awaitedParams.slug)
+	const { slug } = await params
+	const post = await getBlogPostBySlug(slug)
 
 	if (!post) {
 		notFound()

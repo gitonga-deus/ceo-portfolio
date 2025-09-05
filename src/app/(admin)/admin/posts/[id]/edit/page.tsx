@@ -2,12 +2,14 @@ import { Suspense } from "react"
 import { PostEditForm } from "@/components/admin/post-edit-form"
 
 interface EditPostPageProps {
-    params: {
+    params: Promise<{
         id: string
-    }
+    }>
 }
 
-export default function EditPostPage({ params }: EditPostPageProps) {
+export default async function EditPostPage({ params }: EditPostPageProps) {
+    const { id } = await params
+
     return (
         <div className="space-y-6">
             <div>
@@ -16,7 +18,7 @@ export default function EditPostPage({ params }: EditPostPageProps) {
             </div>
 
             <Suspense fallback={<div>Loading...</div>}>
-                <PostEditForm postId={params.id} />
+                <PostEditForm postId={id} />
             </Suspense>
         </div>
     )
