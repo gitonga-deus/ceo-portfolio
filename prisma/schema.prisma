@@ -1,0 +1,161 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(cuid())
+    email     String   @unique
+    password  String
+    name      String
+    role      UserRole @default(ADMIN)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Relations
+    blogPosts BlogPost[]
+
+    @@map("users")
+}
+
+model BlogPost {
+    id           String    @id @default(cuid())
+    title        String
+    slug         String    @unique
+    content      String
+    excerpt      String?
+    featureImage String?
+    published    Boolean   @default(false)
+    publishedAt  DateTime?
+    createdAt    DateTime  @default(now())
+    updatedAt    DateTime  @updatedAt
+
+    // Relations
+    authorId   String
+    author     User          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+    categoryId String?
+    category   Category?     @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+    tags       BlogPostTag[]
+
+    @@map("blog_posts")
+}
+
+model Category {
+    id          String   @id @default(cuid())
+    name        String   @unique
+    slug        String   @unique
+    description String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    // Relations
+    blogPosts BlogPost[]
+
+    @@map("categories")
+}
+
+model Tag {
+    id        String   @id @default(cuid())
+    name      String   @unique
+    slug      String   @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    // Relations
+    blogPosts BlogPostTag[]
+
+    @@map("tags")
+}
+
+model BlogPostTag {
+    id         String   @id @default(cuid())
+    blogPostId String
+    tagId      String
+    createdAt  DateTime @default(now())
+
+    // Relations
+    blogPost BlogPost @relation(fields: [blogPostId], references: [id], onDelete: Cascade)
+    tag      Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+    @@unique([blogPostId, tagId])
+    @@map("blog_post_tags")
+}
+
+model NewsletterSubscriber {
+    id             String           @id @default(cuid())
+    email          String           @unique
+    name           String?
+    status         SubscriberStatus @default(ACTIVE)
+    subscribedAt   DateTime         @default(now())
+    unsubscribedAt DateTime?
+    createdAt      DateTime         @default(now())
+    updatedAt      DateTime         @updatedAt
+
+    @@map("newsletter_subscribers")
+}
+
+model EmailCampaign {
+    id             String         @id @default(cuid())
+    subject        String
+    content        String
+    htmlContent    String?
+    status         CampaignStatus @default(DRAFT)
+    scheduledAt    DateTime?
+    sentAt         DateTime?
+    recipientCount Int            @default(0)
+    openCount      Int            @default(0)
+    clickCount     Int            @default(0)
+    createdAt      DateTime       @default(now())
+    updatedAt      DateTime       @updatedAt
+
+    @@map("email_campaigns")
+}
+
+model Company {
+    id          String        @id @default(cuid())
+    name        String
+    slug        String        @unique
+    description String
+    industry    String
+    status      CompanyStatus @default(ACTIVE)
+    founded     String
+    website     String?
+    logo        String?
+    image       String?
+    featured    Boolean       @default(false)
+    sortOrder   Int           @default(0)
+    createdAt   DateTime      @default(now())
+    updatedAt   DateTime      @updatedAt
+
+    @@map("companies")
+}
+
+enum UserRole {
+    ADMIN
+    EDITOR
+}
+
+enum SubscriberStatus {
+    ACTIVE
+    UNSUBSCRIBED
+    BOUNCED
+}
+
+enum CampaignStatus {
+    DRAFT
+    SCHEDULED
+    SENDING
+    SENT
+    CANCELLED
+}
+
+enum CompanyStatus {
+    ACTIVE
+    INACTIVE
+    SOLD
+    ACQUIRED
+}

@@ -1,0 +1,319 @@
+/* Tiptap Editor Styles */
+
+.ProseMirror {
+  outline: none;
+  padding: 1rem;
+  min-height: 200px;
+}
+
+/* Heading styles */
+.ProseMirror h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ProseMirror h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.75rem;
+  margin-bottom: 0.875rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 1.25rem;
+  margin-bottom: 0.625rem;
+}
+
+.ProseMirror h5 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror h6 {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror .has-focus {
+  border-radius: 3px;
+  box-shadow: 0 0 0 3px #68cef8;
+}
+
+/* Table styles */
+.ProseMirror table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  min-width: 1em;
+  border: 2px solid #ced4da;
+  padding: 3px 5px;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ProseMirror table th {
+  font-weight: bold;
+  text-align: left;
+  background-color: #f1f3f4;
+}
+
+.ProseMirror table .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(200, 200, 255, 0.4);
+  pointer-events: none;
+}
+
+.ProseMirror table .column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: -2px;
+  width: 4px;
+  background-color: #adf;
+  pointer-events: none;
+}
+
+.ProseMirror table p {
+  margin: 0;
+}
+
+.ProseMirror .tableWrapper {
+  padding: 1rem 0;
+  overflow-x: auto;
+}
+
+.ProseMirror .resize-cursor {
+  cursor: ew-resize;
+  cursor: col-resize;
+}
+
+/* Task list styles */
+.ProseMirror ul[data-type="taskList"] {
+  list-style: none;
+  padding: 0;
+}
+
+.ProseMirror ul[data-type="taskList"] p {
+  margin: 0;
+}
+
+.ProseMirror ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+}
+
+.ProseMirror ul[data-type="taskList"] li>label {
+  flex: 0 0 auto;
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+.ProseMirror ul[data-type="taskList"] li>div {
+  flex: 1 1 auto;
+}
+
+.ProseMirror ul[data-type="taskList"] li ul li,
+.ProseMirror ul[data-type="taskList"] li ol li {
+  display: list-item;
+}
+
+.ProseMirror ul[data-type="taskList"] li ul[data-type="taskList"] li,
+.ProseMirror ul[data-type="taskList"] li ol[data-type="taskList"] li {
+  display: flex;
+}
+
+/* Code block styles */
+.ProseMirror pre {
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: 'JetBrainsMono', 'SFMono-Regular', 'SF Mono', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.ProseMirror pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+.ProseMirror code {
+  background-color: rgba(#616161, 0.1);
+  border-radius: 0.25rem;
+  box-decoration-break: clone;
+  color: #616161;
+  font-size: 0.875rem;
+  padding: 0.25rem;
+}
+
+/* Blockquote styles */
+.ProseMirror blockquote {
+  border-left: 2px solid rgba(#0d0d0d, 0.1);
+  padding-left: 1rem;
+}
+
+/* Horizontal rule styles */
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid rgba(#0d0d0d, 0.1);
+  margin: 2rem 0;
+}
+
+/* Image styles */
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* YouTube embed styles */
+.ProseMirror .youtube-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.ProseMirror .youtube-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 0.5rem;
+}
+
+/* Selection styles */
+.ProseMirror ::selection {
+  background: rgba(68, 206, 248, 0.4);
+}
+
+/* Drag cursor */
+.ProseMirror .ProseMirror-dropcursor {
+  position: relative;
+  border: none;
+  margin: 0;
+  display: block;
+  height: 0;
+  border-top: 1px solid #68cef8;
+}
+
+.ProseMirror .ProseMirror-dropcursor:after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  background: #68cef8;
+  border-radius: 50%;
+  margin-left: -3px;
+}
+
+/* Gap cursor */
+.ProseMirror .ProseMirror-gapcursor {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+}
+
+.ProseMirror .ProseMirror-gapcursor:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -2px;
+  width: 20px;
+  border-top: 1px solid #68cef8;
+  animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
+}
+
+@keyframes ProseMirror-cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.ProseMirror .ProseMirror-gapcursor.ProseMirror-gapcursor-left:after {
+  border-left: 1px solid #68cef8;
+  border-top-left-radius: 3px;
+}
+
+.ProseMirror .ProseMirror-gapcursor.ProseMirror-gapcursor-right:after {
+  border-right: 1px solid #68cef8;
+  border-top-right-radius: 3px;
+  margin-left: -21px;
+}
+
+/* Highlight colors */
+.ProseMirror mark {
+  border-radius: 0.25rem;
+  box-decoration-break: clone;
+  padding: 0.125rem 0;
+}
+
+/* Link styles */
+.ProseMirror a {
+  color: #3b82f6;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(59, 130, 246, 0.4);
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
+}
+
+.ProseMirror a:hover {
+  text-decoration-color: #3b82f6;
+}
