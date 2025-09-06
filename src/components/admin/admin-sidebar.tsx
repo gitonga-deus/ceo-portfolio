@@ -19,7 +19,7 @@ const sidebarItems = [
 		icon: FileText,
 	},
 	{
-		title: "Content",
+		title: "Categories & Tags",
 		href: "/admin/content",
 		icon: FolderOpen,
 	},
@@ -38,21 +38,16 @@ const sidebarItems = [
 		href: "/admin/subscribers",
 		icon: Users,
 	},
-	{
-		title: "Settings",
-		href: "/admin/settings",
-		icon: Settings,
-	},
 ]
 
 export function AdminSidebar() {
 	const pathname = usePathname()
 
 	return (
-		<div className="w-64 bg-sidebar border-r border-sidebar-border sticky top-0 h-screen">
-			<div className="px-6 py-4 border-b border-sidebar-border">
+		<div className="w-64 border-r border-sidebar-border sticky top-0 h-screen">
+			<div className="px-6 pb-6 pt-8 border-b border-sidebar-border h-20 ">
 				<Link href="/" className="flex items-center space-x-2">
-					<img src={"/logo.jpeg"} alt="Logo" width={170} height={80} />
+					<img src={"/logo1.svg"} alt="Logo" width={170} height={80} />
 				</Link>
 			</div>
 

@@ -18,7 +18,7 @@ export function AdminHeader() {
 	const { data: session } = useSession()
 
 	return (
-		<header className="sticky top-0 z-50 border-b border-sidebar-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6 py-4">
+		<header className="sticky top-0 z-50 border-b border-sidebar-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 p-6 h-20">
 			<div className="flex items-center justify-between">
 				<div>
 					<h1 className="text-lg font-heading font-semibold">Admin Dashboard</h1>
@@ -47,11 +47,6 @@ export function AdminHeader() {
 									<p className="text-xs leading-none text-muted-foreground">{session?.user?.email}</p>
 								</div>
 							</DropdownMenuLabel>
-							<DropdownMenuSeparator />
-							<DropdownMenuItem>
-								<User className="mr-2 h-4 w-4" />
-								<span>Profile</span>
-							</DropdownMenuItem>
 							<DropdownMenuSeparator />
 							<DropdownMenuItem onClick={() => signOut()}>
 								<LogOut className="mr-2 h-4 w-4" />

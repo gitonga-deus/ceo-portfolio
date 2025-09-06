@@ -26,7 +26,7 @@ export function Navigation() {
 		<nav className="sticky top-0 z-50 w-full border-b bg-muted/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 			<div className="container max-w-6xl mx-auto flex h-20 items-center justify-between px-4">
 				<Link href="/" className="flex items-center space-x-2">
-					<Image src={"/logo.jpeg"} alt="Logo" width={170} height={80} />
+					<Image src={"/logo1.svg"} alt="Logo" width={180} height={80} />
 				</Link>
 
 				<div className="flex items-center space-x-8">

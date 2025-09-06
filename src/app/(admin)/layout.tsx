@@ -6,23 +6,23 @@ import { AdminSidebar } from "@/components/admin/admin-sidebar"
 import { AdminHeader } from "@/components/admin/admin-header"
 
 export default async function AdminLayout({
-  children,
+	children,
 }: {
-  children: React.ReactNode
+	children: React.ReactNode
 }) {
-  const session = await getServerSession(authOptions)
+	const session = await getServerSession(authOptions)
 
-  if (!session) {
-    redirect("/auth/login")
-  }
+	if (!session) {
+		redirect("/auth/login")
+	}
 
-  return (
-    <div className="flex min-h-screen bg-background">
-      <AdminSidebar />
-      <div className="flex-1 flex flex-col">
-        <AdminHeader />
-        <main className="flex-1 p-6 pt-6">{children}</main>
-      </div>
-    </div>
-  )
+	return (
+		<div className="flex min-h-screen bg-background">
+			<AdminSidebar />
+			<div className="flex-1 flex flex-col">
+				<AdminHeader />
+				<main className="flex-1 p-6 pt-6">{children}</main>
+			</div>
+		</div>
+	)
 }

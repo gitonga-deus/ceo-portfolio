@@ -1,6 +1,7 @@
 import { Suspense } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { FolderOpen, Tag } from "lucide-react"
 import { CategoriesList } from "@/components/admin/categories-list"
 import { TagsList } from "@/components/admin/tags-list"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -8,26 +9,42 @@ import { Skeleton } from "@/components/ui/skeleton"
 export default function ContentManagementPage() {
 	return (
 		<div className="space-y-6">
-			<div>
-				<h1 className="text-3xl font-heading font-bold">Content Management</h1>
-				<p className="text-muted-foreground">
-					Manage categories and tags for your blog posts
-				</p>
+			<div className="flex items-center justify-between">
+				<div>
+					<h1 className="text-2xl font-heading font-bold leading-relaxed">Content Management</h1>
+					<p className="text-muted-foreground">
+						Manage categories and tags for your blog posts
+					</p>
+				</div>
 			</div>
 
 			<Tabs defaultValue="categories" className="space-y-6">
-				<TabsList className="grid w-full grid-cols-2">
-					<TabsTrigger value="categories">Categories</TabsTrigger>
-					<TabsTrigger value="tags">Tags</TabsTrigger>
+				<TabsList className="grid w-full grid-cols-2 max-w-none h-10 rounded">
+					<TabsTrigger value="categories" className="flex items-center gap-2 rounded">
+						<FolderOpen className="h-4 w-4" />
+						Categories
+					</TabsTrigger>
+					<TabsTrigger value="tags" className="flex items-center gap-2 rounded">
+						<Tag className="h-4 w-4" />
+						Tags
+					</TabsTrigger>
 				</TabsList>
 
 				<TabsContent value="categories" className="space-y-6">
-					<Card>
+					<Card className="rounded-md shadow-none">
 						<CardHeader>
-							<CardTitle>Blog Categories</CardTitle>
-							<CardDescription>
-								Organize your blog posts into categories for better navigation
-							</CardDescription>
+							<div className="flex items-center justify-between">
+								<div>
+									<CardTitle className="flex items-center gap-2 mb-2">
+										<FolderOpen className="h-5 w-5" />
+										Blog Categories
+									</CardTitle>
+									<CardDescription>
+										Organize your blog posts into categories for better navigation
+									</CardDescription>
+								</div>
+
+							</div>
 						</CardHeader>
 						<CardContent>
 							<Suspense fallback={<CategoriesListSkeleton />}>
@@ -38,12 +55,20 @@ export default function ContentManagementPage() {
 				</TabsContent>
 
 				<TabsContent value="tags" className="space-y-6">
-					<Card>
+					<Card className="rounded-md shadow-none">
 						<CardHeader>
-							<CardTitle>Blog Tags</CardTitle>
-							<CardDescription>
-								Create tags to help readers find related content
-							</CardDescription>
+							<div className="flex items-center justify-between">
+								<div>
+									<CardTitle className="flex items-center gap-2 mb-2">
+										<Tag className="h-5 w-5" />
+										Blog Tags
+									</CardTitle>
+									<CardDescription>
+										Create tags to help readers find related content
+									</CardDescription>
+								</div>
+
+							</div>
 						</CardHeader>
 						<CardContent>
 							<Suspense fallback={<TagsListSkeleton />}>

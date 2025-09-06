@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { FileText, FolderOpen, Tags, Users, Eye } from "lucide-react"
+import { FileText, FolderOpen, Users, Eye, Building2 } from "lucide-react"
 import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 
@@ -48,52 +48,73 @@ export default async function AdminDashboard() {
 			description: `${stats.publishedPosts} published, ${stats.draftPosts} drafts`,
 			icon: FileText,
 			href: "/admin/posts",
+			color: "blue",
 		},
 		{
-			title: "Categories",
-			value: stats.totalCategories,
-			description: "Content categories",
+			title: "Content",
+			value: stats.totalCategories + stats.totalTags,
+			description: `${stats.totalCategories} categories, ${stats.totalTags} tags`,
 			icon: FolderOpen,
-			href: "/admin/categories",
+			href: "/admin/content",
+			color: "green",
 		},
 		{
-			title: "Tags",
-			value: stats.totalTags,
-			description: "Content tags",
-			icon: Tags,
-			href: "/admin/tags",
+			title: "Companies",
+			value: "5+",
+			description: "Portfolio companies",
+			icon: Building2,
+			href: "/admin/companies",
+			color: "purple",
 		},
 		{
 			title: "Subscribers",
 			value: stats.totalSubscribers,
-			description: "Active newsletter subscribers",
+			description: "Newsletter subscribers",
 			icon: Users,
 			href: "/admin/subscribers",
+			color: "orange",
 		},
 	]
+
+	const getColorClasses = (color: string) => {
+		switch (color) {
+			case "blue":
+				return "bg-blue-50 text-blue-700 border-blue-200"
+			case "green":
+				return "bg-green-50 text-green-700 border-green-200"
+			case "purple":
+				return "bg-purple-50 text-purple-700 border-purple-200"
+			case "orange":
+				return "bg-orange-50 text-orange-700 border-orange-200"
+			default:
+				return "bg-gray-50 text-gray-700 border-gray-200"
+		}
+	}
 
 	return (
 		<div className="space-y-8">
 			{/* Welcome Section */}
-			<div>
-				<h2 className="text-2xl font-heading font-bold leading-relaxed">Welcome back!</h2>
-				<p className="text-muted-foreground">Here's what's happening with your portfolio.</p>
+			<div className="bg-white rounded-lg border border-gray-200 p-6">
+				<h2 className="text-2xl font-heading font-bold text-gray-900 mb-2">Welcome back!</h2>
+				<p className="text-gray-600">Here's what's happening with your portfolio.</p>
 			</div>
 
 			{/* Stats Grid */}
-			<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+			<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 				{statCards.map((stat) => {
 					const Icon = stat.icon
 					return (
-						<Card key={stat.title} className="hover:shadow-xs transition-shadow shadow-none rounded-md">
-							<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-								<CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
-								<Icon className="h-4 w-4 text-muted-foreground" />
+						<Card key={stat.title} className="shadow-none hover:shadow-sm transition-all duration-200 rounded-md cursor-pointer border-gray-200 bg-white">
+							<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
+								<CardTitle className="text-sm font-medium text-gray-700">{stat.title}</CardTitle>
+								<div className={`p-2 rounded-lg ${getColorClasses(stat.color)}`}>
+									<Icon className="h-5 w-5" />
+								</div>
 							</CardHeader>
-							<CardContent className="">
-								<div className="text-2xl font-bold">{stat.value}</div>
-								<p className="text-xs text-muted-foreground">{stat.description}</p>
-								<Button variant="outline" size="sm" className="mt-2" asChild>
+							<CardContent>
+								<div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
+								<p className="text-sm text-gray-600 mb-3">{stat.description}</p>
+								<Button variant="outline" size="sm" className="w-full border-gray-300 text-gray-700 hover:bg-gray-50" asChild>
 									<Link href={stat.href}>View all</Link>
 								</Button>
 							</CardContent>
@@ -103,35 +124,35 @@ export default async function AdminDashboard() {
 			</div>
 
 			{/* Quick Actions */}
-			<Card className="rounded-md shadow-none">
+			<Card className="bg-white border-gray-200 rounded-md shadow-none">
 				<CardHeader>
-					<CardTitle>Quick Actions</CardTitle>
-					<CardDescription>Common tasks to manage your content</CardDescription>
+					<CardTitle className="text-gray-900">Quick Actions</CardTitle>
+					<CardDescription className="text-gray-600">Common tasks to manage your content</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<div className="flex flex-wrap gap-4">
-						<Button asChild>
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+						<Button asChild className="h-auto p-4 flex-col bg-[#049AD1]/80 hover:bg-[#049AD1]/90">
 							<Link href="/admin/posts/new">
-								<FileText className="mr-2 h-4 w-4" />
-								New Blog Post
+								<FileText className="h-6 w-6 mb-2" />
+								<span className="text-sm font-medium">New Post</span>
 							</Link>
 						</Button>
-						<Button variant="outline" asChild>
-							<Link href="/admin/categories/new">
-								<FolderOpen className="mr-2 h-4 w-4" />
-								New Category
+						<Button variant="outline" asChild className="h-auto p-4 flex-col border-gray-300 text-gray-700 hover:bg-gray-50">
+							<Link href="/admin/content">
+								<FolderOpen className="h-6 w-6 mb-2" />
+								<span className="text-sm font-medium">Content</span>
 							</Link>
 						</Button>
-						<Button variant="outline" asChild>
+						<Button variant="outline" asChild className="h-auto p-4 flex-col border-gray-300 text-gray-700 hover:bg-gray-50">
 							<Link href="/admin/newsletter/compose">
-								<Users className="mr-2 h-4 w-4" />
-								Send Newsletter
+								<Users className="h-6 w-6 mb-2" />
+								<span className="text-sm font-medium">Newsletter</span>
 							</Link>
 						</Button>
-						<Button variant="outline" asChild>
+						<Button variant="outline" asChild className="h-auto p-4 flex-col border-gray-300 text-gray-700 hover:bg-gray-50">
 							<Link href="/" target="_blank">
-								<Eye className="mr-2 h-4 w-4" />
-								View Site
+								<Eye className="h-6 w-6 mb-2" />
+								<span className="text-sm font-medium">View Site</span>
 							</Link>
 						</Button>
 					</div>
@@ -151,16 +172,16 @@ export default async function AdminDashboard() {
 								<div className="space-y-1">
 									<div className="flex items-center gap-2">
 										<h4 className="font-medium">{post.title}</h4>
-										<Badge variant={post.published ? "default" : "secondary"}>
+										<Badge variant={post.published ? "default" : "secondary"} className="bg-[#049AD1]/80 rounded-full px-3 py-0.5">
 											{post.published ? "Published" : "Draft"}
 										</Badge>
-										{post.category && <Badge variant="outline">{post.category.name}</Badge>}
+										{post.category && <Badge variant="outline" className="rounded-full px-3 py-0.5">{post.category.name}</Badge>}
 									</div>
 									<p className="text-sm text-muted-foreground">
 										By {post.author.name} • {new Date(post.createdAt).toLocaleDateString()}
 									</p>
 								</div>
-								<Button variant="ghost" size="sm" asChild>
+								<Button variant="outline" className="rounded-md px-6" asChild>
 									<Link href={`/admin/posts/${post.id}/edit`}>Edit</Link>
 								</Button>
 							</div>

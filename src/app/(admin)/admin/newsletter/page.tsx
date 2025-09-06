@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Users, Mail, Send, Plus } from "lucide-react"
 import Link from "next/link"
+import { CampaignActions } from "@/components/admin/campaign-actions"
 
 export default async function NewsletterPage() {
 	const [subscribers, campaigns] = await Promise.all([getSubscribers(), getCampaigns()])
@@ -18,12 +19,20 @@ export default async function NewsletterPage() {
 					<h1 className="text-2xl font-bold leading-relaxed">Newsletter Management</h1>
 					<p className="text-muted-foreground">Manage subscribers and email campaigns</p>
 				</div>
-				<Link href="/admin/newsletter/campaigns/new">
-					<Button>
-						<Plus className="h-4 w-4 mr-2" />
-						New Campaign
-					</Button>
-				</Link>
+				<div className="flex gap-2">
+					<Link href="/admin/newsletter/campaigns">
+						<Button variant="outline">
+							<Mail className="h-4 w-4 mr-2" />
+							View All Campaigns
+						</Button>
+					</Link>
+					<Link href="/admin/newsletter/campaigns/new">
+						<Button>
+							<Plus className="h-4 w-4 mr-2" />
+							New Campaign
+						</Button>
+					</Link>
+				</div>
 			</div>
 
 			{/* Stats Cards */}
@@ -65,8 +74,17 @@ export default async function NewsletterPage() {
 			{/* Recent Campaigns */}
 			<Card className="rounded-md shadow-none">
 				<CardHeader>
-					<CardTitle>Recent Campaigns</CardTitle>
-					<CardDescription>Your latest email campaigns and their status</CardDescription>
+					<div className="flex items-center justify-between">
+						<div>
+							<CardTitle>Recent Campaigns</CardTitle>
+							<CardDescription>Your latest email campaigns and their status</CardDescription>
+						</div>
+						<Link href="/admin/newsletter/campaigns">
+							<Button variant="ghost" size="sm">
+								View All
+							</Button>
+						</Link>
+					</div>
 				</CardHeader>
 				<CardContent>
 					<div className="space-y-4">
@@ -75,16 +93,19 @@ export default async function NewsletterPage() {
 								<div>
 									<h3 className="font-medium">{campaign.subject}</h3>
 									<p className="text-sm text-muted-foreground">
-										Newsletter • {new Date(campaign.createdAt).toLocaleDateString()}
+										{new Date(campaign.createdAt).toLocaleDateString()}
 									</p>
 								</div>
-								<Badge
-									variant={
-										campaign.status === "SENT" ? "default" : campaign.status === "DRAFT" ? "secondary" : "outline"
-									}
-								>
-									{campaign.status}
-								</Badge>
+								<div className="flex items-center gap-2">
+									<Badge
+										variant={
+											campaign.status === "SENT" ? "default" : campaign.status === "DRAFT" ? "secondary" : "outline"
+										}
+									>
+										{campaign.status}
+									</Badge>
+									<CampaignActions campaign={campaign} />
+								</div>
 							</div>
 						))}
 						{recentCampaigns.length === 0 && (

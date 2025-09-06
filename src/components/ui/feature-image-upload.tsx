@@ -157,7 +157,7 @@ export function FeatureImageUpload({ value, onChange, onRemove }: FeatureImageUp
 							</div>
 
 							{/* URL Input */}
-							<div className="w-full space-y-2">
+							{/* <div className="w-full space-y-2">
 								<div className="text-sm text-muted-foreground">Or enter image URL:</div>
 								<div className="flex gap-2">
 									<Input
@@ -180,7 +180,7 @@ export function FeatureImageUpload({ value, onChange, onRemove }: FeatureImageUp
 										Add
 									</Button>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					</CardContent>
 				</Card>

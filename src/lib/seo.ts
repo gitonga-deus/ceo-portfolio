@@ -16,14 +16,14 @@ interface SEOConfig {
 }
 
 const defaultConfig = {
-	siteName: "Steve Johnson",
-	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://stevejohnson.com",
-	defaultTitle: "Steve Johnson - CEO & Entrepreneur",
+	siteName: "Steve Down",
+	siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://stevedown.com",
+	defaultTitle: "Steve Down - CEO & Author",
 	defaultDescription: "Experienced CEO and entrepreneur building innovative companies and sharing insights on business, technology, and leadership.",
 	defaultImage: "/og-image.jpg",
-	defaultKeywords: ["CEO", "entrepreneur", "business", "technology", "leadership", "innovation", "startup"],
+	defaultKeywords: ["CEO", "entrepreneur", "business", "technology", "leadership", "innovation", "startup", "author"],
 	twitterHandle: "@steve",
-	author: "Steve Johnson"
+	author: "Steve Down"
 }
 
 export function generateMetadata({
@@ -40,7 +40,7 @@ export function generateMetadata({
 	noIndex = false,
 	canonical,
 }: SEOConfig = {}): Metadata {
-	const fullTitle = title 
+	const fullTitle = title
 		? (title.includes(defaultConfig.siteName) ? title : `${title} | ${defaultConfig.siteName}`)
 		: defaultConfig.defaultTitle
 
@@ -54,7 +54,7 @@ export function generateMetadata({
 		authors: [{ name: author }],
 		creator: author,
 		publisher: siteName,
-		
+
 		// Open Graph
 		openGraph: {
 			type: type as any,
@@ -119,7 +119,7 @@ export function generatePersonStructuredData() {
 		],
 		worksFor: {
 			"@type": "Organization",
-			name: "Steve Johnson Companies"
+			name: "Steve Down Companies"
 		}
 	}
 }

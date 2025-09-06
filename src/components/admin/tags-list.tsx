@@ -12,7 +12,7 @@ interface Tag {
 	name: string
 	slug: string
 	_count: {
-		posts: number
+		blogPosts: number
 	}
 }
 
@@ -85,7 +85,7 @@ export function TagsList() {
 							<div className="flex items-center gap-2">
 								<h4 className="font-medium">{tag.name}</h4>
 								<Badge variant="outline" className="text-xs">
-									{tag._count.posts}
+									{tag._count.blogPosts}
 								</Badge>
 							</div>
 							<p className="text-xs text-muted-foreground">/{tag.slug}</p>

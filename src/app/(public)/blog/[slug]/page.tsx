@@ -11,6 +11,11 @@ import type { Metadata } from "next"
 import { TiptapContent } from "@/components/ui/tiptap-content"
 import { generateMetadata as generateSEOMetadata, generateArticleStructuredData } from "@/lib/seo"
 import { StructuredData } from "@/components/seo/structured-data"
+import { FadeIn } from "@/components/animations/fade-in"
+import { ScrollReveal } from "@/components/animations/scroll-reveal"
+import { HoverScale } from "@/components/animations/hover-scale"
+import { PageTransition } from "@/components/animations/page-transition"
+import { NewsletterSignup } from "@/components/newsletter-signup"
 
 interface BlogPostPageProps {
 	params: Promise<{
@@ -32,14 +37,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
 	return generateSEOMetadata({
 		title: post.title,
-		description: post.excerpt || `Read ${post.title} by Steve Johnson`,
+		description: post.excerpt || `Read ${post.title} by Steve Down`,
 		keywords: post.category ? [post.category.name, "blog", "article"] : ["blog", "article"],
 		image: post.featureImage || undefined,
 		url: `/blog/${post.slug}`,
 		type: "article",
 		publishedTime: post.publishedAt?.toISOString() || post.createdAt.toISOString(),
 		modifiedTime: post.updatedAt.toISOString(),
-		author: "Steve Johnson",
+		author: "Steve Down",
 	})
 }
 
@@ -59,45 +64,55 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 	const structuredData = generateArticleStructuredData({
 		title: post.title,
-		description: post.excerpt || `Read ${post.title} by Steve Johnson`,
+		description: post.excerpt || `Read ${post.title} by Steve Down`,
 		url: `/blog/${post.slug}`,
 		image: post.featureImage || undefined,
 		publishedTime: post.publishedAt?.toISOString() || post.createdAt.toISOString(),
 		modifiedTime: post.updatedAt.toISOString(),
-		author: "Steve Johnson",
+		author: "Steve Down",
 	})
 
 	return (
-		<>
+		<PageTransition>
 			<StructuredData data={structuredData} />
 			<div className="py-10 px-4">
 				<div className="container max-w-5xl mx-auto">
 					{/* Back to Blog */}
-					<Button variant="ghost" asChild className="mb-8">
-						<Link href="/blog">
-							<ArrowLeft className="mr-2 h-4 w-4" />
-							Back to Blog
-						</Link>
-					</Button>
+					<FadeIn>
+						<HoverScale>
+							<Button variant="ghost" asChild className="mb-8">
+								<Link href="/blog">
+									<ArrowLeft className="mr-2 h-4 w-4" />
+									Back to Blog
+								</Link>
+							</Button>
+						</HoverScale>
+					</FadeIn>
 
 					{/* Article Header */}
 					<header className="mb-12">
-						<div className="flex items-center gap-2 mb-4">
-							{post.category &&
-								<Badge variant="outline" className="rounded-full px-4 py-1">
-									{post.category.name}
-								</Badge>}
+						<FadeIn delay={0.2}>
+							<div className="flex items-center gap-2 mb-4">
+								{post.category &&
+									<Badge variant="outline" className="rounded-full px-4 py-1">
+										{post.category.name}
+									</Badge>}
 
-							{post.tags.map(({ tag }) => (
-								<Badge key={tag.id} variant="secondary" className="rounded-full px-4 py-1">
-									{tag.name}
-								</Badge>
-							))}
-						</div>
+								{post.tags.map(({ tag }) => (
+									<Badge key={tag.id} variant="secondary" className="rounded-full px-4 py-1">
+										{tag.name}
+									</Badge>
+								))}
+							</div>
+						</FadeIn>
 
-						<h1 className="font-heading font-black text-2xl md:text-3xl lg:text-4xl mb-6 text-balance">{post.title}</h1>
+						<FadeIn delay={0.4}>
+							<h1 className="font-heading font-black text-2xl md:text-3xl lg:text-4xl mb-6 text-balance">{post.title}</h1>
+						</FadeIn>
 
-						{post.excerpt && <p className="text-xl text-muted-foreground mb-6 text-pretty">{post.excerpt}</p>}
+						<FadeIn delay={0.6}>
+							{post.excerpt && <p className="text-xl text-muted-foreground mb-6 text-pretty">{post.excerpt}</p>}
+						</FadeIn>
 
 						<div className="flex items-center gap-6 text-sm text-muted-foreground mb-8">
 							<div className="flex items-center gap-2">
@@ -177,18 +192,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 					)}
 
 					{/* Newsletter CTA */}
-					<Card className="text-center p-8 bg-primary/5 shadow-none rounded-md">
-						<CardContent>
-							<h3 className="font-heading font-bold text-xl mb-2">Enjoyed this article?</h3>
-							<p className="text-muted-foreground mb-4">Subscribe to get more insights delivered to your inbox.</p>
-							<Button asChild>
-								<Link href="/newsletter">Subscribe to Newsletter</Link>
-							</Button>
-						</CardContent>
-					</Card>
+					<div className="text-center p-8 rounded-md">
+						<NewsletterSignup />
+					</div>
 				</div>
 			</div>
-		</>
+		</PageTransition>
 	)
 }
 
