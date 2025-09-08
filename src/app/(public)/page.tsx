@@ -180,10 +180,10 @@ export default async function HomePage() {
 
 				{/* Meet Steve Section */}
 				<section id="meet-steve">
-					<div className="max-w-5xl mx-auto py-20 px-4">
+					<div className="max-w-5xl mx-auto pt-24 px-4">
 						{/* Blue heading with underline */}
 						<div className="text-center">
-							<h2 className="text-3xl md:text-5xl font-bold mb-16">
+							<h2 className="text-3xl md:text-5xl font-bold mb-10">
 								Meet Steve Down
 							</h2>
 						</div>
@@ -228,10 +228,10 @@ export default async function HomePage() {
 				</section>
 
 				{/* Companies Section */}
-				<section id="companies" className="py-20 px-4 bg-white">
+				<section id="companies" className="pt-24 px-4 bg-white">
 					<div className="container max-w-5xl mx-auto">
 						<ScrollReveal className="text-center mb-16">
-							<h2 className="font-heading font-bold text-4xl md:text-5xl mb-4">Steve's Companies</h2>
+							<h2 className="font-heading font-bold text-2xl md:text-4xl mb-4">Steve's Companies</h2>
 							<p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
 								A portfolio of businesses built to solve real problems and create lasting value across multiple industries.
 							</p>

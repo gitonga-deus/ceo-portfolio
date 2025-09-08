@@ -81,7 +81,7 @@ export function NewsletterSignup() {
 
 					{error && <p className="text-center text-xs text-red-500 mb-2">{error}</p>}
 
-					<p className="text-center text-xs text-gray-400">By signing up to our newsletter you agree to our <a href="#" className="underline underline-offset-4 transition duration-100 hover:text-[#049AD1] active:text-[#049AD1]">Term of Service</a> and <a href="#" className="underline underline-offset-4 transition duration-100 hover:text-[#049AD1] active:text-[#049AD1]">Privacy Policy</a>.</p>
+					<p className="text-center text-xs text-gray-400">By signing up to our newsletter you agree to our <a href="/terms" className="underline underline-offset-4 transition duration-100 hover:text-[#1285e4] active:text-[#1285e4]">Term of Service</a> and <a href="/privacy" className="underline underline-offset-4 transition duration-100 hover:text-[#049AD1] active:text-[#049AD1]">Privacy Policy</a>.</p>
 				</div>
 			</div>
 		</div>

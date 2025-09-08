@@ -31,7 +31,7 @@ export default async function PostsPage() {
 					<h2 className="text-2xl font-heading font-bold leading-relaxed">Blog Posts</h2>
 					<p className="text-muted-foreground">Manage your blog content</p>
 				</div>
-				<Button asChild className="bg-[#049AD1]/80 hover:bg-[#049AD1]">
+				<Button asChild className="bg-[#1285e4]/80 hover:bg-[#1285e4]">
 					<Link href="/admin/posts/new">
 						<Plus className="mr-2 h-4 w-4" />
 						New Post
@@ -54,7 +54,7 @@ export default async function PostsPage() {
 								<div className="space-y-2 flex-1">
 									<div className="flex items-center gap-2">
 										<h4 className="font-medium text-lg">{post.title}</h4>
-										<Badge variant={post.published ? "default" : "secondary"} className="bg-[#049AD1]/80 rounded-full px-3 py-0.5">
+										<Badge variant={post.published ? "default" : "secondary"} className="bg-[#1285e4]/80 rounded-full px-3 py-0.5">
 											{post.published ? "Published" : "Draft"}
 										</Badge>
 										{post.category && <Badge variant="outline" className="rounded-full px-3 py-0.5">{post.category.name}</Badge>}

@@ -131,7 +131,7 @@ export default async function AdminDashboard() {
 				</CardHeader>
 				<CardContent>
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-						<Button asChild className="h-auto p-4 flex-col bg-[#049AD1]/80 hover:bg-[#049AD1]/90">
+						<Button asChild className="h-auto p-4 flex-col bg-[#1285e4]/80 hover:bg-[#1285e4]/90">
 							<Link href="/admin/posts/new">
 								<FileText className="h-6 w-6 mb-2" />
 								<span className="text-sm font-medium">New Post</span>
@@ -172,7 +172,7 @@ export default async function AdminDashboard() {
 								<div className="space-y-1">
 									<div className="flex items-center gap-2">
 										<h4 className="font-medium">{post.title}</h4>
-										<Badge variant={post.published ? "default" : "secondary"} className="bg-[#049AD1]/80 rounded-full px-3 py-0.5">
+										<Badge variant={post.published ? "default" : "secondary"} className="bg-[#1285e4]/80 rounded-full px-3 py-0.5">
 											{post.published ? "Published" : "Draft"}
 										</Badge>
 										{post.category && <Badge variant="outline" className="rounded-full px-3 py-0.5">{post.category.name}</Badge>}

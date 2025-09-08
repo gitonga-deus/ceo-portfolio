@@ -5,10 +5,14 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import Image from "next/image"
 import { Menu } from "lucide-react"
+import { usePathname, useRouter } from "next/navigation"
 
 import { Facebook, Instagram, LinkedIn, X, YouTube } from "@/icons"
 
 export function Navigation() {
+	const pathname = usePathname()
+	const router = useRouter()
+
 	const links = [
 		{ href: "/", label: "Home" },
 		{ href: "/#meet-steve", label: "Meet Steve" },
@@ -21,6 +25,14 @@ export function Navigation() {
 		if (href.startsWith("/#")) {
 			e.preventDefault()
 			const targetId = href.substring(2) // Remove "/#"
+
+			// If not on home page, navigate to home page first
+			if (pathname !== "/") {
+				router.push(href)
+				return
+			}
+
+			// If on home page, scroll to element
 			const targetElement = document.getElementById(targetId)
 			if (targetElement) {
 				targetElement.scrollIntoView({
@@ -29,6 +41,19 @@ export function Navigation() {
 				})
 			}
 		}
+	}
+
+	// Check if link is active
+	const isActiveLink = (href: string) => {
+		if (href === "/") {
+			return pathname === "/"
+		}
+		if (href.startsWith("/#")) {
+			// Anchor links are never shown as "active" in navigation
+			// They only work functionally but don't get active styling
+			return false
+		}
+		return pathname.startsWith(href)
 	}
 
 	const socialLinks = [
@@ -56,13 +81,16 @@ export function Navigation() {
 					</Link>
 
 					{/* Desktop Nav */}
-					<nav className="hidden items-center gap-6 text-sm text-muted-foreground font-medium md:flex">
+					<nav className="hidden items-center gap-6 text-sm font-medium md:flex">
 						{links.map((l) => (
 							<Link
 								key={l.href}
 								href={l.href}
 								onClick={(e) => handleAnchorClick(e, l.href)}
-								className="hover:text-[#1285e4] transition-colors"
+								className={`transition-colors ${isActiveLink(l.href)
+									? "text-[#1285e4] font-semibold"
+									: "text-muted-foreground hover:text-[#1285e4]"
+									}`}
 							>
 								{l.label}
 							</Link>
@@ -115,13 +143,16 @@ export function Navigation() {
 								</div>
 
 								{/* Nav Links */}
-								<nav className="flex flex-col gap-1 mt-1 text-muted-foreground px-2">
+								<nav className="flex flex-col gap-1 mt-1 px-2">
 									{links.map((l) => (
 										<Link
 											key={l.href}
 											href={l.href}
 											onClick={(e) => handleAnchorClick(e, l.href)}
-											className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 hover:text-gray-900 transition-colors rounded-md"
+											className={`flex items-center gap-3 px-4 py-3 transition-colors rounded-md ${isActiveLink(l.href)
+												? "bg-[#1285e4]/10 text-[#1285e4] font-semibold"
+												: "text-muted-foreground hover:bg-gray-100 hover:text-gray-900"
+												}`}
 										>
 											<span className="text-sm">{l.label}</span>
 										</Link>

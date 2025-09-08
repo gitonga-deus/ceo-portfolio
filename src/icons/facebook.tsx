@@ -1,5 +1,5 @@
 export default function FacebookIcon() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4.5 w-4.5" viewBox="0 0 576 1024" fill="currentColor"><path fill="currentColor" d="M512 448q26 0 45 18.5t19 45.5v64q0 27-19 45.5T512 640H320v320q0 26-19 45t-45 19h-64q-27 0-45.5-19T128 960V640H64q-27 0-45.5-18.5T0 576v-64q0-27 18.5-45.5T64 448h64V256q0-106 75-181T384 0h128q27 0 45.5 18.5T576 64v64q0 27-18.5 45.5T512 192H384q-27 0-45.5 18.5T320 256v192h192z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4.5 w-4.5" viewBox="0 0 224 432" fill="currentColor"><path fill="currentColor" d="M145 429H66V235H0v-76h66v-56q0-48 27-74t72-26q36 0 59 3v67l-41 1q-22 0-30 9t-8 27v49h76l-10 76h-66v194z" /></svg>
     );
 };

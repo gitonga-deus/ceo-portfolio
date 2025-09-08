@@ -47,7 +47,7 @@ export function AdminSidebar() {
 		<div className="w-64 border-r border-sidebar-border sticky top-0 h-screen">
 			<div className="px-6 pb-6 pt-8 border-b border-sidebar-border h-20 ">
 				<Link href="/" className="flex items-center space-x-2">
-					<img src={"/logo1.svg"} alt="Logo" width={170} height={80} />
+					<img src={"/logo.png"} alt="Logo" width={170} height={80} />
 				</Link>
 			</div>
 
