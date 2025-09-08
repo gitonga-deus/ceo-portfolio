@@ -2,6 +2,11 @@
 @import "tw-animate-css";
 @import "../styles/tiptap.css";
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
