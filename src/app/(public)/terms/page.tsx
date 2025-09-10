@@ -12,7 +12,7 @@ export const metadata: Metadata = generateSEOMetadata({
 export default function TermsPage() {
 	return (
 		<PageTransition>
-			<div className="py-20 px-4">
+			<div className="pt-24 pb-20 px-4 sm:pt-28 lg:pt-32">
 				<div className="container max-w-4xl mx-auto">
 					<FadeIn>
 						<h1 className="text-4xl font-heading font-bold mb-8">Terms of Service</h1>

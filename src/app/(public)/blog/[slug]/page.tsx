@@ -15,7 +15,7 @@ import { FadeIn } from "@/components/animations/fade-in"
 import { ScrollReveal } from "@/components/animations/scroll-reveal"
 import { HoverScale } from "@/components/animations/hover-scale"
 import { PageTransition } from "@/components/animations/page-transition"
-import { NewsletterSignup } from "@/components/newsletter-signup"
+
 
 interface BlogPostPageProps {
 	params: Promise<{
@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 			<div className="py-10 px-4">
 				<div className="container max-w-5xl mx-auto">
 					{/* Back to Blog */}
-					<FadeIn>
+					<FadeIn className="mt-24">
 						<HoverScale>
 							<Button variant="ghost" asChild className="mb-8">
 								<Link href="/blog">
@@ -190,11 +190,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 							</div>
 						</div>
 					)}
-
-					{/* Newsletter CTA */}
-					<div className="text-center p-8 rounded-md">
-						<NewsletterSignup />
-					</div>
 				</div>
 			</div>
 		</PageTransition>

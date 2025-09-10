@@ -3,8 +3,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Building2, PenTool, Users, TrendingUp, Award, ExternalLink, Star } from "lucide-react"
-import { NewsletterSignup } from "@/components/newsletter-signup"
+import { Building2, PenTool, Users, TrendingUp, Award, ExternalLink, Star, ChevronsDown } from "lucide-react"
+
 import { FadeIn } from "@/components/animations/fade-in"
 import { ScrollReveal } from "@/components/animations/scroll-reveal"
 import { StaggerContainer, StaggerItem } from "@/components/animations/stagger-container"
@@ -128,63 +128,66 @@ export default async function HomePage() {
 		<PageTransition>
 			<div className="flex flex-col">
 				{/* Hero Section */}
-				<section className="bg-white py-6 lg:py-16">
-					<div className="max-w-5xl mx-auto px-4">
-						{/* Text Content */}
-						<div className="text-center text-balance mb-16">
+				<section className="relative h-screen overflow-hidden">
+					{/* Background Image */}
+					<div className="absolute inset-0 z-0">
+						<Image
+							src="/steve2.jpg"
+							alt="Steve Down - CEO and Entrepreneur"
+							fill
+							className="object-cover object-center"
+							priority
+						/>
+						{/* Dark overlay for better text readability */}
+						<div className="absolute inset-0 bg-black/50"></div>
+					</div>
+
+					{/* Hero Content - Perfectly Centered */}
+					<div className="absolute inset-0 z-10 flex items-center justify-center">
+						<div className="text-center text-white px-4 max-w-5xl mx-auto">
 							<FadeIn delay={0.2}>
-								<h1 className="mb-4 text-xl font-medium text-muted-foreground leading-relaxed">
+								<h1 className="mt-24 mb-2 text-xl font-medium text-white/90 leading-relaxed capitalize">
 									Illuminating the planet through principle-centered wealth education
 								</h1>
 							</FadeIn>
 
 							<FadeIn delay={0.4}>
-								<p className="mb-10 text-5xl capitalize font-bold md:text-6xl tracking-tight leading-tight">
-									Steve Down's business acumen &  entrepreneurial talent
-								</p>
+								<h2 className="mb-6 text-6xl text-balance font-extrabold capitalize tracking-tight leading-tight">
+									Steve Down's business acumen & entrepreneurial talent
+								</h2>
 							</FadeIn>
 
 							<FadeIn delay={0.6}>
 								<div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
 									<HoverScale>
-										<Button asChild className="bg-[#1285e4]/80 hover:bg-[#1285e4] px-6 h-10 rounded-lg text-sm md:text-base">
+										<Button asChild className="bg-[#1285e4] hover:bg-[#1285e4]/90 px-8 h-12 rounded-lg text-base font-semibold">
 											<SmoothScrollLink href="#meet-steve">
 												Learn About Me
-											</SmoothScrollLink>
-										</Button>
-									</HoverScale>
-									<HoverScale>
-										<Button asChild variant="outline" className="h-10 px-6 rounded-lg text-sm md:text-base">
-											<SmoothScrollLink href="#companies">
-												View My Companies
 											</SmoothScrollLink>
 										</Button>
 									</HoverScale>
 								</div>
 							</FadeIn>
 						</div>
-
-						{/* Image */}
-						<FadeIn delay={0.8}>
-							<Image
-								src="/steve2.jpg"
-								alt="Steve Down - CEO and Entrepreneur"
-								width={800}
-								height={600}
-								className="w-full h-full object-cover object-center rounded-lg shadow-lg"
-								priority
-							/>
-						</FadeIn>
 					</div>
+
+					{/* Scroll indicator */}
+					<FadeIn delay={0.8}>
+						<div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+							<div className="animate-bounce">
+								<ChevronsDown className="w-8 h-8 text-white/70" />
+							</div>
+						</div>
+					</FadeIn>
 				</section>
 
 				{/* Meet Steve Section */}
 				<section id="meet-steve">
-					<div className="max-w-5xl mx-auto pt-24 px-4">
+					<div className="max-w-5xl mx-auto mt-26 p-4">
 						{/* Blue heading with underline */}
 						<div className="text-center">
-							<h2 className="text-3xl md:text-5xl font-bold mb-10">
-								Meet Steve Down
+							<h2 className="text-3xl md:text-4xl font-bold mb-10">
+								Meet Steve
 							</h2>
 						</div>
 						{/* Main Content Layout */}
@@ -228,11 +231,11 @@ export default async function HomePage() {
 				</section>
 
 				{/* Companies Section */}
-				<section id="companies" className="pt-24 px-4 bg-white">
-					<div className="container max-w-5xl mx-auto">
+				<section id="companies" className=" bg-white">
+					<div className="container max-w-5xl mx-auto mt-26 p-4">
 						<ScrollReveal className="text-center mb-16">
 							<h2 className="font-heading font-bold text-2xl md:text-4xl mb-4">Steve's Companies</h2>
-							<p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
+							<p className="text-xl text-muted-foreground max-w-5xl mx-auto text-pretty">
 								A portfolio of businesses built to solve real problems and create lasting value across multiple industries.
 							</p>
 						</ScrollReveal>
@@ -312,14 +315,7 @@ export default async function HomePage() {
 					</div>
 				</section>
 
-				{/* Newsletter Signup Section */}
-				<section className="py-20 px-4">
-					<div className="max-w-6xl mx-auto">
-						<ScrollReveal delay={0.2} className="flex justify-center">
-							<NewsletterSignup />
-						</ScrollReveal>
-					</div>
-				</section>
+
 			</div>
 		</PageTransition>
 	)

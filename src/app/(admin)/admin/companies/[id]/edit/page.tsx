@@ -4,6 +4,10 @@ import { useState, useEffect } from "react"
 import { CompanyForm } from "@/components/admin/company-form"
 import { toast } from "@/hooks/use-toast"
 
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { ArrowLeft } from "lucide-react"
+
 // Define the types since Prisma client might not be available yet
 type CompanyStatus = "ACTIVE" | "INACTIVE" | "SOLD" | "ACQUIRED"
 
@@ -62,8 +66,15 @@ export default function EditCompanyPage({ params }: EditCompanyPageProps) {
 	if (loading) {
 		return (
 			<div className="space-y-6">
-				<div>
-					<h2 className="text-2xl font-heading font-bold">Edit Company</h2>
+				<Link href="/admin/companies" className="">
+					<Button variant="outline">
+						<ArrowLeft className="h-4 w-4 mr-2" />
+						Back to Companies
+					</Button>
+				</Link>
+
+				<div className="mt-4">
+					<h2 className="text-2xl font-heading font-bold leading-relaxed">Edit Company</h2>
 					<p className="text-muted-foreground">Loading company details...</p>
 				</div>
 			</div>
@@ -73,8 +84,15 @@ export default function EditCompanyPage({ params }: EditCompanyPageProps) {
 	if (!company) {
 		return (
 			<div className="space-y-6">
-				<div>
-					<h2 className="text-2xl font-heading font-bold">Company Not Found</h2>
+				<Link href="/admin/companies" className="">
+					<Button variant="outline">
+						<ArrowLeft className="h-4 w-4 mr-2" />
+						Back to Companies
+					</Button>
+				</Link>
+
+				<div className="mt-4">
+					<h2 className="text-2xl font-heading font-bold leading-relaxed">Company Not Found</h2>
 					<p className="text-muted-foreground">The requested company could not be found.</p>
 				</div>
 			</div>
@@ -83,7 +101,15 @@ export default function EditCompanyPage({ params }: EditCompanyPageProps) {
 
 	return (
 		<div className="space-y-6">
-			<div>
+
+			<Link href="/admin/companies" className="">
+				<Button variant="outline">
+					<ArrowLeft className="h-4 w-4 mr-2" />
+					Back to Companies
+				</Button>
+			</Link>
+
+			<div className="mt-4">
 				<h2 className="text-2xl font-heading font-bold leading-relaxed">Edit Company</h2>
 				<p className="text-muted-foreground">Update {company.name} details</p>
 			</div>

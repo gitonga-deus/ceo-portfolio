@@ -6,7 +6,7 @@ import { CalendarDays, Clock } from "lucide-react"
 import { getBlogPosts, getCategories } from "@/lib/blog"
 import { formatDate } from "@/lib/utils/blog-utils"
 import { BlogFilters } from "@/components/blog-filters"
-import { NewsletterSignup } from "@/components/newsletter-signup"
+
 import { generateMetadata as generateSEOMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
 import { FadeIn } from "@/components/animations/fade-in"
@@ -44,7 +44,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
     return (
         <PageTransition>
-            <div className="bg-white py-6 sm:py-8 lg:py-12">
+            <div className="bg-white pt-24 pb-6 sm:pt-28 sm:pb-8 lg:pt-32 lg:pb-12">
                 <div className="mx-auto max-w-5xl px-4">
                     {/* Header Section */}
                     <FadeIn className="mb-10 md:mb-16">
@@ -145,11 +145,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                         )}
                     </StaggerContainer>
 
-                    {posts.length > 0 && (
-                        <ScrollReveal className="mt-20 pt-12 border-t border-border/50">
-                            <NewsletterSignup />
-                        </ScrollReveal>
-                    )}
+
                 </div>
             </div>
         </PageTransition>

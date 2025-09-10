@@ -3,15 +3,16 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import Image from "next/image"
 import { Menu } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
 import { Facebook, Instagram, LinkedIn, X, YouTube } from "@/icons"
 
 export function Navigation() {
 	const pathname = usePathname()
 	const router = useRouter()
+	const [isScrolled, setIsScrolled] = useState(false)
 
 	const links = [
 		{ href: "/", label: "Home" },
@@ -19,6 +20,20 @@ export function Navigation() {
 		{ href: "/#companies", label: "Companies" },
 		{ href: "/blog", label: "Blog" },
 	]
+
+	// Check if we're on the homepage (which has the hero background)
+	const isHomePage = pathname === "/"
+
+	// Handle scroll effect for navbar
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.scrollY
+			setIsScrolled(scrollTop > 50)
+		}
+
+		window.addEventListener("scroll", handleScroll)
+		return () => window.removeEventListener("scroll", handleScroll)
+	}, [])
 
 	// Handle smooth scrolling for anchor links
 	const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -65,23 +80,34 @@ export function Navigation() {
 	]
 
 	return (
-		<header className="sticky top-0 z-50 p-4">
-			<div className="container mx-auto max-w-5xl">
-				<div className="flex h-16 items-center justify-between px-4 bg-white border rounded-full shadow-xs">
+		<header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isHomePage
+			? isScrolled
+				? "bg-white/95 backdrop-blur-sm border-b border-gray-200"
+				: "bg-transparent border-b border-transparent"
+			: isScrolled
+				? "bg-white border-b border-gray-200"
+				: "bg-white border-b border-transparent"
+			}`}>
+			<div className="container mx-auto max-w-6xl px-4 py-4">
+				<div className={`flex h-16 items-center justify-between px-4 rounded-full transition-all duration-500 ${isHomePage
+					? isScrolled
+						? "bg-white border shadow-xs"
+						: "border-white/20"
+					: "bg-white border shadow-xs"
+					}`}>
 					{/* Brand Logo */}
 					<Link href="/" className="flex items-center gap-1.5">
 						<img
 							src="/logo.png"
-							alt="Skitbit logo"
+							alt="Steve Down Logo"
 							width={150}
 							height={80}
 							className=""
 						/>
-						<span className="font-semibold tracking-wide text-white">Skitbit</span>
 					</Link>
 
 					{/* Desktop Nav */}
-					<nav className="hidden items-center gap-6 text-sm font-medium md:flex">
+					<nav className="hidden items-center gap-4 text-sm font-medium md:flex">
 						{links.map((l) => (
 							<Link
 								key={l.href}
@@ -89,7 +115,11 @@ export function Navigation() {
 								onClick={(e) => handleAnchorClick(e, l.href)}
 								className={`transition-colors ${isActiveLink(l.href)
 									? "text-[#1285e4] font-semibold"
-									: "text-muted-foreground hover:text-[#1285e4]"
+									: isHomePage
+										? isScrolled
+											? "text-muted-foreground hover:text-[#1285e4]"
+											: "text-white hover:text-[#1285e4]"
+										: "text-muted-foreground hover:text-[#1285e4]"
 									}`}
 							>
 								{l.label}
@@ -105,7 +135,12 @@ export function Navigation() {
 								href={social.href}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="text-muted-foreground transition duration-100 hover:text-gray-900 active:text-gray-600"
+								className={`transition duration-100 active:text-gray-600 ${isHomePage
+									? isScrolled
+										? "text-muted-foreground hover:text-[#1285e4]"
+										: "text-white hover:text-[#1285e4]"
+									: "text-muted-foreground hover:text-[#1285e4]"
+									}`}
 								aria-label={social.label}
 							>
 								<social.icon />

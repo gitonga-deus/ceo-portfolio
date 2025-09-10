@@ -54,7 +54,7 @@ export default function MeetStevePage() {
 			<div className="min-h-screen">
 				{/* Hero Section */}
 				<section className="relative overflow-hidden bg-white" aria-labelledby="about-hero-heading">
-					<div className="mx-auto max-w-6xl pt-10 pb-8 md:pt-10 md:pb-16">
+					<div className="mx-auto max-w-6xl pt-24 pb-8 sm:pt-28 md:pb-16 lg:pt-32">
 						<div className="grid items-center gap-10 md:grid-cols-12">
 							{/* Left: Text */}
 							<motion.div

@@ -84,7 +84,7 @@ export default async function CompaniesPage() {
 	const companies = await getCompanies()
 	return (
 		<PageTransition>
-			<div className="py-20 px-4">
+			<div className="pt-24 pb-20 px-4 sm:pt-28 lg:pt-32">
 				<div className="container max-w-6xl mx-auto">
 					{/* Header */}
 					<FadeIn className="text-center mb-16">
