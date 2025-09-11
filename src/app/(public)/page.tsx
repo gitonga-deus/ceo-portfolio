@@ -230,6 +230,75 @@ export default async function HomePage() {
 					</div>
 				</section>
 
+				{/* In Brief Section */}
+				<section className="py-20 px-4 bg-muted/20">
+					<div className="max-w-5xl mx-auto">
+						<div className="grid md:grid-cols-2 gap-12 items-center">
+							{/* Text Content */}
+							<FadeIn>
+								<div className="space-y-6">
+									<h2 className="text-3xl md:text-4xl font-bold mb-6">
+										In Brief
+									</h2>
+									<p className="text-lg text-muted-foreground leading-relaxed">
+										Financially Fit World is one of the pioneer companies globally that practices the principle of Cause Capitalism. Cause Capitalism dictates that any for-profit company chooses a non-profit organization; not as a gimmick but as a sustainable partner. Financially Fit World has chosen The Goat Foundation as its non-profit partner and will donate a percentage of its anticipated gross income towards the foundation as a cause for good.
+									</p>
+								</div>
+							</FadeIn>
+
+							{/* Image */}
+							<FadeIn delay={0.2}>
+								<figure className="p-2 border shadow-sm rounded-lg bg-white">
+									<Image
+										src="/finfit.png"
+										alt="Financially Fit World"
+										width={600}
+										height={400}
+										className="w-full h-auto object-cover rounded-md"
+									/>
+								</figure>
+							</FadeIn>
+						</div>
+					</div>
+				</section>
+
+				{/* Steve's Vision Section */}
+				<section className="py-20 px-4 bg-white">
+					<div className="max-w-5xl mx-auto">
+						<div className="grid md:grid-cols-2 gap-12 items-center">
+							{/* Image */}
+							<FadeIn>
+								<figure className="p-2 border shadow-sm rounded-lg bg-white">
+									<Image
+										src="/the_miracle_of_wealth.jpg"
+										alt="The Miracle of Wealth"
+										width={600}
+										height={400}
+										className="w-full h-auto object-cover rounded-md"
+									/>
+								</figure>
+							</FadeIn>
+
+							{/* Text Content */}
+							<FadeIn delay={0.2}>
+								<div className="space-y-6">
+									<h2 className="text-3xl md:text-4xl font-bold mb-6">
+										Steve's Vision
+									</h2>
+									<div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+										<p>
+											Steve's vision as taught in Financially Fit is to make you re-imagine wealth. To re-imagine wealth, you must learn to increase your cash flow, eliminate and live without debt, and become completely financially independent. Debt is a distraction that robs people of their wealth and true financial independence.
+										</p>
+										<p>
+											The goal of Financially Fit is to help individuals learn to function without debt. The learning management system and online learning program, envisaged by Mr. Down teach principles of how to become 100% debt free in 5-10 years.
+										</p>
+									</div>
+								</div>
+							</FadeIn>
+						</div>
+					</div>
+				</section>
+
 				{/* Companies Section */}
 				<section id="companies" className=" bg-white">
 					<div className="container max-w-5xl mx-auto mt-26 p-4">
