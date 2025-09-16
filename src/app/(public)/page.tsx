@@ -45,33 +45,6 @@ const skills = [
 	"Investor Relations",
 ]
 
-const achievements = [
-	{
-		icon: Building2,
-		number: "5+",
-		label: "Companies Founded",
-		description: "Successfully built and scaled multiple businesses"
-	},
-	{
-		icon: Users,
-		number: "200+",
-		label: "Team Members",
-		description: "Talented professionals hired and mentored"
-	},
-	{
-		icon: TrendingUp,
-		number: "$50M+",
-		label: "Revenue Generated",
-		description: "Combined revenue across portfolio companies"
-	},
-	{
-		icon: Award,
-		number: "10+",
-		label: "Years Experience",
-		description: "Decade of entrepreneurial leadership"
-	}
-]
-
 async function getCompanies(): Promise<Company[]> {
 	try {
 		const companies = await prisma.company.findMany({
@@ -209,7 +182,7 @@ export default async function HomePage() {
 							{/* Right: Text Card */}
 							<ScrollReveal delay={0.2}>
 								<div className="bg-white px-6 py-8 rounded-lg">
-									<div className="space-y-6">
+									<div className="space-y-6 text-center">
 
 										{/* Content paragraphs */}
 										<div className="space-y-4 text-gray-700 leading-relaxed">
@@ -236,7 +209,7 @@ export default async function HomePage() {
 						<div className="grid md:grid-cols-2 gap-12 items-center">
 							{/* Text Content */}
 							<FadeIn>
-								<div className="space-y-6">
+								<div className="space-y-6 text-center">
 									<h2 className="text-3xl md:text-4xl font-bold mb-6">
 										In Brief
 									</h2>
@@ -281,7 +254,7 @@ export default async function HomePage() {
 
 							{/* Text Content */}
 							<FadeIn delay={0.2}>
-								<div className="space-y-6">
+								<div className="space-y-6 text-center ">
 									<h2 className="text-3xl md:text-4xl font-bold mb-6">
 										Steve's Vision
 									</h2>
