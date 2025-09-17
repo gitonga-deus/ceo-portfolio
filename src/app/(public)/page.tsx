@@ -125,7 +125,7 @@ export default async function HomePage() {
 							</h2>
 						</div>
 						<div className="grid lg:grid-cols-2 gap-4 items-start">
-							
+
 							{/* Left: Photo */}
 							<ScrollReveal>
 								<div className="relative">

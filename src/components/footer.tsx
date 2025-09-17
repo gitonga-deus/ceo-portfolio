@@ -90,9 +90,9 @@ export function Footer() {
 			{/* Main Footer Content */}
 			<div className="pt-12 lg:pt-16">
 				<div className="mx-auto max-w-6xl px-4 md:px-8">
-					<div className="mb-16 grid grid-cols-2 gap-12 md:grid-cols-4 lg:gap-8">
+					<div className="mb-16 grid grid-cols-2 gap-2 md:grid-cols-4 lg:gap-8">
 						{/* Logo and Description */}
-						<div className="col-span-full lg:col-span-2">
+						<div className="col-span-full lg:col-span-2 mb-6">
 							<div className="mb-4">
 								<Link href="/" className="inline-flex items-center gap-2 text-xl font-bold text-black md:text-2xl" aria-label="logo">
 									<img
@@ -100,18 +100,16 @@ export function Footer() {
 										alt="Steve Down Logo"
 										width={160}
 										height={80}
-
 									/>
-
 								</Link>
 							</div>
 
-							<p className="px-1.5 mb-6 text-gray-500 sm:pr-8">
+							<p className="px-2 mb-6 text-gray-500 sm:pr-8 text-balance">
 								The commitment and dedication he demonstrates to his family and friends distinguish him from other successful business persons. Steve has established the legacy of selfless charity. His purity of purpose will be emulated by many in years to come.
 							</p>
 
 							{/* Social Links */}
-							<div className="flex gap-4 items-center px-1.5">
+							<div className="flex gap-4 items-center px-2">
 								{socialLinks.map((social, index) => (
 									<Link
 										key={index}

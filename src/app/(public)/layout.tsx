@@ -1,5 +1,5 @@
 import type React from "react"
-import { Navigation } from "@/components/navigation"
+import Navbar from "@/components/navbar"
 import { Footer } from "@/components/footer"
 
 export default function PublicLayout({
@@ -8,8 +8,8 @@ export default function PublicLayout({
 	children: React.ReactNode
 }) {
 	return (
-		<div className="min-h-screen flex flex-col">
-			<Navigation />
+		<div className="min-h-screen overflow-auto">
+			<Navbar />
 			<main className="flex-1">{children}</main>
 			<Footer />
 		</div>
