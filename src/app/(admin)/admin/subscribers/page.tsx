@@ -18,7 +18,7 @@ export default async function SubscribersPage() {
 			</div>
 
 			{/* Stats Cards */}
-			<div className="grid gap-4 md:grid-cols-4">
+			<div className="grid gap-4 md:grid-cols-3">
 				<Card className="rounded-md shadow-none">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<CardTitle className="text-sm font-medium">Total Subscribers</CardTitle>
@@ -46,17 +46,6 @@ export default async function SubscribersPage() {
 					</CardHeader>
 					<CardContent>
 						<div className="text-2xl font-bold text-red-600">{unsubscribedCount}</div>
-					</CardContent>
-				</Card>
-
-				<Card className="rounded-md shadow-none">
-					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-						<CardTitle className="text-sm font-medium">Growth Rate</CardTitle>
-						<Mail className="h-4 w-4 text-muted-foreground" />
-					</CardHeader>
-					<CardContent>
-						<div className="text-2xl font-bold">+12%</div>
-						<p className="text-xs text-muted-foreground">vs last month</p>
 					</CardContent>
 				</Card>
 			</div>

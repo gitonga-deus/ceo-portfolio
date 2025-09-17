@@ -23,8 +23,6 @@ export async function GET() {
 
         const companies = await prisma.company.findMany({
             orderBy: [
-                { featured: "desc" },
-                { sortOrder: "asc" },
                 { createdAt: "desc" }
             ],
         })
@@ -45,18 +43,15 @@ export async function POST(request: NextRequest) {
         }
 
         const body = await request.json()
-        const { 
-            name, 
-            slug, 
-            description, 
-            industry, 
-            status, 
-            founded, 
-            website, 
-            logo, 
-            image, 
-            featured, 
-            sortOrder 
+        const {
+            name,
+            slug,
+            description,
+            industry,
+            founded,
+            website,
+            logo,
+            image
         } = body
 
         // Check if slug already exists
@@ -78,13 +73,9 @@ export async function POST(request: NextRequest) {
                 slug,
                 description,
                 industry,
-                status: status || "ACTIVE",
                 founded,
                 website: website || null,
                 logo: logo || null,
-                image: image || null,
-                featured: featured || false,
-                sortOrder: sortOrder || 0,
             },
         })
 

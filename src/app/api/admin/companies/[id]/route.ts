@@ -58,13 +58,10 @@ export async function PUT(
             slug,
             description,
             industry,
-            status,
             founded,
             website,
             logo,
-            image,
-            featured,
-            sortOrder
+            image
         } = body
 
         // Check if slug already exists (excluding current company)
@@ -90,13 +87,9 @@ export async function PUT(
                 slug,
                 description,
                 industry,
-                status,
                 founded,
                 website: website || null,
                 logo: logo || null,
-                image: image || null,
-                featured: featured || false,
-                sortOrder: sortOrder || 0,
             },
         })
 

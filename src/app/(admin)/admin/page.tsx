@@ -59,14 +59,6 @@ export default async function AdminDashboard() {
 			color: "green",
 		},
 		{
-			title: "Companies",
-			value: "5+",
-			description: "Portfolio companies",
-			icon: Building2,
-			href: "/admin/companies",
-			color: "purple",
-		},
-		{
 			title: "Subscribers",
 			value: stats.totalSubscribers,
 			description: "Newsletter subscribers",
@@ -100,7 +92,7 @@ export default async function AdminDashboard() {
 			</div>
 
 			{/* Stats Grid */}
-			<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+			<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{statCards.map((stat) => {
 					const Icon = stat.icon
 					return (
@@ -130,29 +122,23 @@ export default async function AdminDashboard() {
 					<CardDescription className="text-gray-600">Common tasks to manage your content</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-						<Button asChild className="h-auto p-4 flex-col bg-[#1285e4]/80 hover:bg-[#1285e4]/90">
+					<div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+						<Button asChild className="h-10 p-4 flex items-center gap-2 bg-[#1285e4]/80 hover:bg-[#1285e4]/90">
 							<Link href="/admin/posts/new">
-								<FileText className="h-6 w-6 mb-2" />
+								<FileText className="h-6 w-6" />
 								<span className="text-sm font-medium">New Post</span>
 							</Link>
 						</Button>
-						<Button variant="outline" asChild className="h-auto p-4 flex-col border-gray-300 text-gray-700 hover:bg-gray-50">
+						<Button variant="outline" asChild className="h-10 p-4 flex items-center gap-2">
 							<Link href="/admin/content">
-								<FolderOpen className="h-6 w-6 mb-2" />
+								<FolderOpen className="h-6 w-6" />
 								<span className="text-sm font-medium">Content</span>
 							</Link>
 						</Button>
-						<Button variant="outline" asChild className="h-auto p-4 flex-col border-gray-300 text-gray-700 hover:bg-gray-50">
+						<Button variant="outline" asChild className="h-10 p-4 flex items-center gap-2">
 							<Link href="/admin/newsletter/compose">
-								<Users className="h-6 w-6 mb-2" />
+								<Users className="h-6 w-6" />
 								<span className="text-sm font-medium">Newsletter</span>
-							</Link>
-						</Button>
-						<Button variant="outline" asChild className="h-auto p-4 flex-col border-gray-300 text-gray-700 hover:bg-gray-50">
-							<Link href="/" target="_blank">
-								<Eye className="h-6 w-6 mb-2" />
-								<span className="text-sm font-medium">View Site</span>
 							</Link>
 						</Button>
 					</div>

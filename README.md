@@ -1,89 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CEO Portfolio & Blog
+
+This is a Next.js project for CEO's personal portfolio and blog. It includes an admin panel for managing content, companies, and newsletters.
+
+## Features
+
+-   **Blog:** A fully functional blog with categories, tags, and search.
+-   **Company Portfolio:** Showcase a portfolio of companies with details.
+-   **Newsletter:** Allow users to subscribe to a newsletter.
+-   **Admin Panel:** A comprehensive admin panel to manage all content.
+-   **Authentication:** Secure authentication for the admin panel.
+-   **File Uploads:** File uploads are handled by Vercel Blob storage.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+-   [Node.js](https://nodejs.org/en/) (v20 or later)
+-   [npm](https://www.npmjs.com/)
+-   [PostgreSQL](https://www.postgresql.org/) (This project is configured to use [Neon](https://neon.tech/) for the database)
+
+### Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/your-username/ceo-portfolio.git
+    cd ceo-portfolio
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Set up the database:**
+
+    -   Create a new project on [Neon](https://neon.tech/) and get your PostgreSQL connection string.
+    -   Copy the `.env.example` file to a new file named `.env` and update the `DATABASE_URL` with your Neon connection string.
+
+4.  **Run database migrations:**
+
+    ```bash
+    npx prisma migrate dev
+    ```
+
+## Environment Variables
+
+To run this project, you will need to create a `.env` file in the root of the project and add the following environment variables:
+
+-   `DATABASE_URL`: The connection string for your PostgreSQL database.
+-   `NEXTAUTH_URL`: The URL of your Next.js application. For local development, this is `http://localhost:3000`.
+-   `NEXTAUTH_SECRET`: A secret key for NextAuth.js. You can generate one using `openssl rand -hex 32`.
+-   `BLOB_READ_WRITE_TOKEN`: Your Vercel Blob read/write token.
+-   `RESEND_API_KEY`: Your API key for Resend (for sending emails).
+-   `NEXT_PUBLIC_SITE_URL`: The public URL of your site (e.g., `https://stevejohnson.com`).
+
+## Running the Application
+
+1.  **Start the development server:**
+
+    ```bash
+    npm run dev
+    ```
+
+2.  **Open your browser:**
+
+    Navigate to `http://localhost:3000` to see the application.
+
+## Running the Seed
+
+To populate the database with initial data, you can run the seed script:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run db:seed
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will create a new admin user and some sample data.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+.
+├── prisma/
+│   ├── schema.prisma       # Prisma schema file
+│   └── seed.ts             # Seed script
+├── public/                 # Public assets
+├── scripts/                # Additional scripts
+├── src/
+│   ├── app/                # Next.js app directory
+│   │   ├── (admin)/        # Admin panel pages
+│   │   ├── (auth)/         # Authentication pages
+│   │   ├── (public)/       # Public pages
+│   │   └── api/            # API routes
+│   ├── components/         # React components
+│   ├── lib/                # Helper functions and utilities
+│   └── ...
+└── ...
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is optimized for deployment on [Vercel](https://vercel.com/).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.  **Push your code to a Git repository.**
+2.  **Import your project into Vercel.**
+3.  **Configure the environment variables in the Vercel dashboard.**
+4.  **Deploy!**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Built With
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-# Finance Blog Post
-
-> **Excerpt:** Discover how compound interest can turn small investments into significant wealth over time, and learn practical tips to maximize your financial growth.
-
-## The Power of Compound Interest: How Small Investments Grow Big
-
-Compound interest is often called the eighth wonder of the world. For anyone looking to build wealth, understanding how it works is essential. Unlike simple interest, which only earns on your initial investment, compound interest allows your money to grow exponentially by earning interest on both your principal and the accumulated interest.
-
-### Why Compound Interest Matters
-
-Imagine you invest $1,000 at an annual interest rate of 7%. After one year, you earn $70 in interest. In the second year, you earn interest not just on your original $1,000, but also on the $70 you earned the previous year. Over time, this effect snowballs, turning small, regular investments into substantial savings.
-
-### Tips for Maximizing Compound Growth
-
-- **Start Early:** The sooner you begin investing, the more time your money has to grow.
-- **Be Consistent:** Regular contributions, even small ones, add up over time.
-- **Reinvest Earnings:** Let your interest and dividends compound by reinvesting them.
-- **Avoid Withdrawals:** Removing money interrupts the compounding process.
-
-### Final Thoughts
-
-Compound interest rewards patience and consistency. Whether you’re saving for retirement, a home, or your child’s education, harnessing its power can help you achieve your financial goals faster. Start today, and let time work for you.
-
-# Blockchain Blog Post
-
-> **Excerpt:** Explore how blockchain technology is transforming industries by enabling secure, transparent, and decentralized transactions.
-
-## Blockchain: The Backbone of Decentralized Innovation
-
-Blockchain technology has emerged as a revolutionary force in the digital world. At its core, blockchain is a distributed ledger that records transactions across a network of computers, making data tamper-resistant and transparent.
-
-### Why Blockchain Matters
-
-Unlike traditional databases, blockchain does not rely on a central authority. Every transaction is verified by network participants, ensuring trust and security. This decentralized approach is powering new business models in finance, supply chain, healthcare, and beyond.
-
-### Key Benefits of Blockchain
-
-- **Transparency:** All transactions are visible to network participants, reducing fraud.
-- **Security:** Cryptographic techniques protect data from unauthorized changes.
-- **Decentralization:** No single point of failure, making systems more resilient.
-- **Efficiency:** Smart contracts automate processes, reducing manual intervention.
-
-### Real-World Applications
-
-- **Cryptocurrencies:** Bitcoin and Ethereum are built on blockchain, enabling peer-to-peer digital payments.
-- **Supply Chain:** Track goods from origin to destination, improving accountability.
-- **Healthcare:** Securely share patient records while maintaining privacy.
-- **Voting Systems:** Enable tamper-proof digital voting.
-
-### Final Thoughts
-
-Blockchain is more than just the technology behind cryptocurrencies. Its ability to foster trust, transparency, and efficiency is driving innovation across industries. As adoption grows, blockchain will continue to reshape how we interact, transact, and build the future.
+-   [Next.js](https.nextjs.org/) - React framework
+-   [Prisma](https://www.prisma.io/) - ORM for Node.js and TypeScript
+-   [NextAuth.js](https://next-auth.js.org/) - Authentication for Next.js
+-   [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+-   [shadcn/ui](https://ui.shadcn.com/) - UI components
+-   [Vercel Blob](https://vercel.com/storage/blob) - File storage

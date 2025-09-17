@@ -116,22 +116,27 @@ model EmailCampaign {
 }
 
 model Company {
-    id          String        @id @default(cuid())
+    id          String   @id @default(cuid())
     name        String
-    slug        String        @unique
+    slug        String   @unique
     description String
     industry    String
     status      CompanyStatus @default(ACTIVE)
     founded     String
     website     String?
     logo        String?
-    image       String?
-    featured    Boolean       @default(false)
-    sortOrder   Int           @default(0)
-    createdAt   DateTime      @default(now())
-    updatedAt   DateTime      @updatedAt
+    featured    Boolean  @default(false)
+    sortOrder   Int      @default(0)
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 
     @@map("companies")
+}
+
+enum CompanyStatus {
+    ACTIVE
+    INACTIVE
+    ACQUIRED
 }
 
 enum UserRole {
@@ -151,11 +156,4 @@ enum CampaignStatus {
     SENDING
     SENT
     CANCELLED
-}
-
-enum CompanyStatus {
-    ACTIVE
-    INACTIVE
-    SOLD
-    ACQUIRED
 }
