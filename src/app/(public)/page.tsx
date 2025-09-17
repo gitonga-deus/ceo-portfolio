@@ -73,11 +73,11 @@ export default async function HomePage() {
 							className="object-cover object-center"
 							priority
 						/>
-						{/* Dark overlay for better text readability */}
+
 						<div className="absolute inset-0 bg-black/50"></div>
 					</div>
 
-					{/* Hero Content - Perfectly Centered */}
+					{/* Hero Content */}
 					<div className="absolute inset-0 z-10 flex items-center justify-center">
 						<div className="text-center text-white px-4 max-w-5xl mx-auto">
 							<FadeIn delay={0.2}>
@@ -119,14 +119,13 @@ export default async function HomePage() {
 				{/* Meet Steve Section */}
 				<section id="meet-steve">
 					<div className="max-w-5xl mx-auto mt-26 p-4">
-						{/* Blue heading with underline */}
 						<div className="text-center">
 							<h2 className="text-3xl md:text-4xl font-bold mb-10">
 								Meet Steve
 							</h2>
 						</div>
-						{/* Main Content Layout */}
 						<div className="grid lg:grid-cols-2 gap-4 items-start">
+							
 							{/* Left: Photo */}
 							<ScrollReveal>
 								<div className="relative">
@@ -144,7 +143,7 @@ export default async function HomePage() {
 							{/* Right: Text Card */}
 							<ScrollReveal delay={0.2}>
 								<div className="bg-white px-6 py-8 rounded-lg">
-									<div className="space-y-6 text-center">
+									<div className="space-y-6 text-justify">
 										{/* Content paragraphs */}
 										<div className="space-y-4 text-gray-700 leading-relaxed">
 											<p>
@@ -170,11 +169,11 @@ export default async function HomePage() {
 						<div className="grid md:grid-cols-2 gap-12 items-center">
 							{/* Text Content */}
 							<FadeIn>
-								<div className="space-y-6 text-center">
+								<div className="space-y-6 text-justify">
 									<h2 className="text-3xl md:text-4xl font-bold mb-6">
 										In Brief
 									</h2>
-									<p className="text-lg text-muted-foreground leading-relaxed">
+									<p className="text-muted-foreground leading-relaxed">
 										Financially Fit World is one of the pioneer companies globally that practices the principle of Cause Capitalism. Cause Capitalism dictates that any for-profit company chooses a non-profit organization; not as a gimmick but as a sustainable partner. Financially Fit World has chosen The Goat Foundation as its non-profit partner and will donate a percentage of its anticipated gross income towards the foundation as a cause for good.
 									</p>
 								</div>
@@ -215,11 +214,11 @@ export default async function HomePage() {
 
 							{/* Text Content */}
 							<FadeIn delay={0.2}>
-								<div className="space-y-6 text-center ">
+								<div className="space-y-6 text-justify ">
 									<h2 className="text-3xl md:text-4xl font-bold mb-6">
 										Steve's Vision
 									</h2>
-									<div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+									<div className="space-y-4 text-muted-foreground leading-relaxed">
 										<p>
 											Steve's vision as taught in Financially Fit is to make you re-imagine wealth. To re-imagine wealth, you must learn to increase your cash flow, eliminate and live without debt, and become completely financially independent. Debt is a distraction that robs people of their wealth and true financial independence.
 										</p>
@@ -238,9 +237,6 @@ export default async function HomePage() {
 					<div className="container max-w-5xl mx-auto mt-26 p-4">
 						<ScrollReveal className="text-center mb-16">
 							<h2 className="font-heading font-bold text-2xl md:text-4xl mb-4">Steve's Companies</h2>
-							<p className="text-xl text-muted-foreground max-w-5xl mx-auto text-pretty">
-								A portfolio of businesses built to solve real problems and create lasting value across multiple industries.
-							</p>
 						</ScrollReveal>
 
 						{/* Companies Grid */}
