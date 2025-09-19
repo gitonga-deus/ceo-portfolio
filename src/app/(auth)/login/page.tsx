@@ -53,7 +53,7 @@ export default function LoginPage() {
 		<Card className="rounded-md shadow-none">
 			<CardHeader className="space-y-4 mb-4">
 				<div className="flex justify-center">
-					<Image src="/logo1.svg" alt="Steve Down" width={200} height={80} className="" />
+					<Image src="/logo.png" alt="Steve Down" width={200} height={80} className="" />
 				</div>
 				<CardDescription className="text-center">Enter your credentials to access the admin dashboard</CardDescription>
 			</CardHeader>

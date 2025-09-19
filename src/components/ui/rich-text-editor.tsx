@@ -10,11 +10,6 @@ import { TextAlign } from "@tiptap/extension-text-align"
 import { Underline } from "@tiptap/extension-underline"
 import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
-import { Strike } from "@tiptap/extension-strike"
-import { Code } from "@tiptap/extension-code"
-import { CodeBlock } from "@tiptap/extension-code-block"
-import { Blockquote } from "@tiptap/extension-blockquote"
-import { HorizontalRule } from "@tiptap/extension-horizontal-rule"
 import { Table } from "@tiptap/extension-table"
 import { TableRow } from "@tiptap/extension-table-row"
 import { TableCell } from "@tiptap/extension-table-cell"
@@ -28,8 +23,6 @@ import { Placeholder } from "@tiptap/extension-placeholder"
 import { CharacterCount } from "@tiptap/extension-character-count"
 import { Focus } from "@tiptap/extension-focus"
 import { Typography } from "@tiptap/extension-typography"
-import { Dropcursor } from "@tiptap/extension-dropcursor"
-import { Gapcursor } from "@tiptap/extension-gapcursor"
 import { cn } from "@/lib/utils"
 import { TiptapToolbar } from "./tiptap-toolbar"
 
@@ -55,10 +48,21 @@ export function RichTextEditor({
 				bulletList: {
 					keepMarks: true,
 					keepAttributes: false,
+					HTMLAttributes: {
+						class: "list-disc pl-6 space-y-1",
+					},
 				},
 				orderedList: {
 					keepMarks: true,
 					keepAttributes: false,
+					HTMLAttributes: {
+						class: "list-decimal pl-6 space-y-1",
+					},
+				},
+				listItem: {
+					HTMLAttributes: {
+						class: "leading-relaxed",
+					},
 				},
 			}),
 			TextStyle,
@@ -73,19 +77,6 @@ export function RichTextEditor({
 			Underline,
 			Subscript,
 			Superscript,
-			Strike,
-			Code,
-			CodeBlock.configure({
-				HTMLAttributes: {
-					class: "bg-muted p-4 rounded-md font-mono text-sm",
-				},
-			}),
-			Blockquote.configure({
-				HTMLAttributes: {
-					class: "border-l-4 border-primary pl-4 italic",
-				},
-			}),
-			HorizontalRule,
 			Table.configure({
 				resizable: true,
 			}),
@@ -109,12 +100,12 @@ export function RichTextEditor({
 			}),
 			TaskList.configure({
 				HTMLAttributes: {
-					class: "not-prose pl-2",
+					class: "not-prose pl-2 space-y-2",
 				},
 			}),
 			TaskItem.configure({
 				HTMLAttributes: {
-					class: "flex items-start my-4",
+					class: "flex items-start my-2",
 				},
 				nested: true,
 			}),
@@ -123,8 +114,6 @@ export function RichTextEditor({
 			}),
 			CharacterCount,
 			Typography,
-			Dropcursor,
-			Gapcursor,
 		],
 		content: value,
 		onUpdate: ({ editor }) => {
@@ -134,26 +123,23 @@ export function RichTextEditor({
 		editorProps: {
 			attributes: {
 				class: cn(
-					"prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[200px] p-4 max-w-none",
-					"prose-headings:font-heading prose-headings:font-bold prose-headings:text-foreground",
-					"prose-h1:text-4xl prose-h1:font-bold prose-h1:mb-4 prose-h1:mt-6",
-					"prose-h2:text-3xl prose-h2:font-bold prose-h2:mb-3 prose-h2:mt-5",
-					"prose-h3:text-2xl prose-h3:font-bold prose-h3:mb-3 prose-h3:mt-4",
-					"prose-h4:text-xl prose-h4:font-bold prose-h4:mb-2 prose-h4:mt-4",
-					"prose-h5:text-lg prose-h5:font-bold prose-h5:mb-2 prose-h5:mt-3",
-					"prose-h6:text-base prose-h6:font-bold prose-h6:mb-2 prose-h6:mt-3",
-					"prose-p:text-foreground prose-p:leading-relaxed prose-p:mb-4",
-					"prose-a:text-primary prose-a:no-underline hover:prose-a:underline",
-					"prose-strong:text-foreground prose-strong:font-semibold",
-					"prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm",
-					"prose-pre:bg-muted prose-pre:border prose-pre:rounded-md",
-					"prose-blockquote:border-l-primary prose-blockquote:bg-muted/50 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r-md",
-					"prose-ul:list-disc prose-ol:list-decimal",
-					"prose-li:text-foreground",
-					"prose-table:border-collapse prose-table:border prose-table:border-border",
-					"prose-th:border prose-th:border-border prose-th:bg-muted prose-th:p-2 prose-th:font-semibold",
-					"prose-td:border prose-td:border-border prose-td:p-2",
-					"prose-img:rounded-md prose-img:shadow-sm",
+					"min-h-[250px] w-full bg-background px-3 py-1 text-[15px] leading-relaxed placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+					// Typography styles for editing
+					"prose prose-sm max-w-none dark:prose-invert",
+					// Lists
+					"prose-ul:list-disc prose-ul:pl-6 prose-ul:my-2 prose-ul:space-y-1",
+					"prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-2 prose-ol:space-y-1",
+					"prose-li:text-foreground prose-li:leading-relaxed prose-li:my-0",
+					"prose-li:marker:text-muted-foreground",
+					// Nested lists
+					"[&_ul_ul]:list-[circle] [&_ul_ul]:mt-1 [&_ul_ul]:mb-1",
+					"[&_ol_ol]:list-[lower-roman] [&_ol_ol]:mt-1 [&_ol_ol]:mb-1",
+					// Other elements
+					"prose-p:my-2 prose-p:leading-relaxed",
+					"prose-headings:font-heading prose-headings:font-bold",
+					"prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs",
+					"prose-code:before:content-[''] prose-code:after:content-['']",
+					"prose-blockquote:border-l-primary prose-blockquote:bg-muted/30 prose-blockquote:py-2 prose-blockquote:px-4 prose-blockquote:rounded-r",
 					className
 				),
 			},

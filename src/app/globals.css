@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @import "../styles/tiptap.css";
 
+@plugin "@tailwindcss/typography";
+
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
