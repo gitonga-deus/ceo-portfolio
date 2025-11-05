@@ -56,50 +56,8 @@ To run this project, you will need to create a `.env` file in the root of the pr
 -   `NEXTAUTH_SECRET`: A secret key for NextAuth.js. You can generate one using `openssl rand -hex 32`.
 -   `BLOB_READ_WRITE_TOKEN`: Your Vercel Blob read/write token.
 -   `RESEND_API_KEY`: Your API key for Resend (for sending emails).
--   `NEXT_PUBLIC_SITE_URL`: The public URL of your site (e.g., `https://stevejohnson.com`).
+-   `NEXT_PUBLIC_SITE_URL`: The public URL of your site (e.g., `https://stevedown.com`).
 
-## Running the Application
-
-1.  **Start the development server:**
-
-    ```bash
-    npm run dev
-    ```
-
-2.  **Open your browser:**
-
-    Navigate to `http://localhost:3000` to see the application.
-
-## Running the Seed
-
-To populate the database with initial data, you can run the seed script:
-
-```bash
-npm run db:seed
-```
-
-This will create a new admin user and some sample data.
-
-## Project Structure
-
-```
-.
-├── prisma/
-│   ├── schema.prisma       # Prisma schema file
-│   └── seed.ts             # Seed script
-├── public/                 # Public assets
-├── scripts/                # Additional scripts
-├── src/
-│   ├── app/                # Next.js app directory
-│   │   ├── (admin)/        # Admin panel pages
-│   │   ├── (auth)/         # Authentication pages
-│   │   ├── (public)/       # Public pages
-│   │   └── api/            # API routes
-│   ├── components/         # React components
-│   ├── lib/                # Helper functions and utilities
-│   └── ...
-└── ...
-```
 
 ## Deployment
 
